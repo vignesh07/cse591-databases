@@ -12,17 +12,21 @@ The dataset is initialized in the PostgreSQL database along with a POSTGIS exten
 --create index nyc_subway_stations_geom_gist on public.nyc_subway_stations using spgist(point((st_x(geom)),(st_y(geom))) kd_point_ops);
 --create index nyc_subway_stations_geom_gist on public.nyc_subway_stations using spgist(point((st_x(geom)),(st_y(geom))) quad_point_ops);
 
+
 --Geometry Function
+
 --the neighborhood of the ‘Broad St Subway Station’
 --SELECT name, ST_AsText(geom) FROM nyc_subway_stations WHERE name = 'Broad St';
 --SELECT name, boroname FROM nyc_neighborhoods WHERE ST_Intersects(geom, ST_GeomFromText ('POINT(583571 4506714)',26918));
 
---select * from nyc_neighborhoods;
 
 --Range Query- Lists all the subway stations within a given neighborhood.
+
 --select nyc_subway_stations.name, nyc_neighborhoods.name from nyc_subway_stations,nyc_neighborhoods where (nyc_neighborhoods.name = 'East Village' or nyc_neighborhoods.name = 'West Village') and nyc_neighborhoods.geom && nyc_subway_stations.geom;
 
+
 --Joins
+
 --The following query finds the neighborhood of ‘South Ferry’ subway station.
 --set enable_seqscan = off;
 --set enable_nestloop = off;
